@@ -1,12 +1,16 @@
-import Image from 'next/image'
+
+'use client'
 import styles from './page.module.css'
-import NavBar from './components/NavBar'
+import Featured from './components/Featured'
+import ProductList from './components/ProductList'
+import Footer from './components/Footer'
 
 export default function Home() {
   return (
     <main className={styles.main}>
-    <NavBar/>
-    <h1>Home</h1>
+    <Featured/>
+    <ProductList/>
+    <Footer/>
     </main>
   )
 }
