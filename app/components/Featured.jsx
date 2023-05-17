@@ -9,10 +9,13 @@ import React from 'react'
 function Featured() {
     const [index, setIndex] = useState(0);
     const images = [
-      "/img/1.jpg",
-      "/img/2.jpg",
-      "/img/3.jpg",
-      "/img/4.jpg",
+      "/img/dish5.jpg",
+      "/img/dish6.jpg",
+      "/img/dish1.jpg",
+      "/img/dish2.jpg",
+      "/img/dish3.jpg",
+      "/img/dish4.jpg",
+      
     ];
   
     const handleArrow = (direction) =>{
@@ -28,7 +31,7 @@ function Featured() {
     <div className={styles.arrowContainer} style={{ left: 0 }} onClick={()=>handleArrow("l")}>
       <Image src="/img/arrowl.png" alt="" fill="fill" style="contain"/>
     </div>
-    <div className={styles.wrapper} style={{transform:`translateX(${-100*index}vw)`}}>
+    <div className={styles.wrapper} style={{transform:`translateX(${-100 *index}vw)`}}>
       {images.map((img, i) => (
         <div className={styles.imgContainer} key={i}>
           <Image src={img} alt="" fill="fill" style="contain" />
