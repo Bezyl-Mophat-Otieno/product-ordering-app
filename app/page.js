@@ -10,7 +10,6 @@ export default function Home() {
     <main className={styles.main}>
     <Featured/>
     <ProductList/>
-    <Footer/>
     </main>
   )
 }

@@ -4,12 +4,13 @@ import React from 'react'
 import { useState } from 'react';
 import Image from 'next/image';
 import styles from '../../../styles/product.module.css'
+import Link from 'next/link'
 
 
 
 function Product() {
 
-  const [size, setSize] = useState(0);
+const [size, setSize] = useState(0);
 const pizza = {
   id: 1,
   img: "/img/pizza.png",
@@ -32,11 +33,11 @@ const pizza = {
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
           <div className={styles.size} onClick={() => setSize(0)}>
-            <Image src="/img/size.png" layout="fill" alt="" />
+            <Image src="/img/size.png" fill       style={{objectFit:"cover"}} alt="" />
             <span className={styles.number}>Small</span>
           </div>
           <div className={styles.size} onClick={() => setSize(1)}>
-            <Image src="/img/size.png" layout="fill" alt="" />
+            <Image src="/img/size.png" fill       style={{objectFit:"cover"}} alt="" />
             <span className={styles.number}>Medium</span>
           </div>
           <div className={styles.size} onClick={() => setSize(2)}>
@@ -85,7 +86,7 @@ const pizza = {
         </div>
         <div className={styles.add}>
             <input type="number" defaultValue={1} className={styles.quantity}/>
-            <button className={styles.button}>Add to Cart</button>
+            <button className={styles.button}><Link href={'/cart'}> Add to Cart</Link></button>
         </div>
       </div>
     </div>
