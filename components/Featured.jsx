@@ -1,7 +1,7 @@
 'use client'
 
 import Image from 'next/image'
-import styles from '../../styles/featured.module.css'
+import styles from '../styles/featured.module.css'
 import { useState } from 'react'
 import React from 'react'
 

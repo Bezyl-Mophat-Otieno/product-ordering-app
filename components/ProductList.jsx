@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from '../../styles/productList.module.css'
+import styles from '../styles/productList.module.css'
 import ProductCard from './ProductCard'
 
 

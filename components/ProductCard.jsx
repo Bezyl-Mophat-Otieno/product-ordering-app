@@ -1,13 +1,13 @@
 
 
 import React from 'react'
-import styles from '../../styles/productCard.module.css'
+import styles from '../styles/productCard.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
 
 function ProductCard() {
   return (
-    <div className={"container"}>
+    <div className={styles.container}>
 
     <Image src="/img/pizza.png" alt="" width="300" height="300" />
       <h1 className={styles.title}>FIORI DI ZUCCA</h1>

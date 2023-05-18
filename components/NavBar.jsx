@@ -1,7 +1,8 @@
 import React from 'react'
-import styles from '../../styles/navbar.module.css'
+import styles from '../styles/navbar.module.css'
 import Image from 'next/image'
 import Link from 'next/link'
+
 
 function NavBar() {
   return (

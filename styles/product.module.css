@@ -28,8 +28,8 @@
   .price {
     margin-top: 30px;
     margin-bottom: 30px;
-    color: rgb(7, 7, 7);
-    font-size:30px;
+    color:black;
+    font-size:100px;
     font-weight: 400;
     border-bottom: 1px solid #d1411e;
   }
@@ -94,13 +94,13 @@
   }
   
   .button {
-    height: 30px;
-    width: 100px;
+    height: 40px;
+    width: 200px;
     margin-left: 10px;
-    background-color: #d1411e;
+    background-color: #109255;
     color: white;
-    border: none;
-    font-weight: 500;
+    border: 2px solid green;
+    font-weight: bold;
     cursor: pointer;
     border-radius: 10%;
   }
@@ -121,6 +121,9 @@
     .title {
       margin: 5px;
       margin-top: 10px;
+      margin-bottom:20px;
+      text-decoration: underline;
+      border-bottom: 2px solid white;
     }
   
     .sizes {
