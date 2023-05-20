@@ -7,8 +7,13 @@ import styles from '../../../styles/product.module.css'
 import Link from 'next/link'
 
 
+//TODO: install react-rooter-dom 
+//TODO import useLocation
+//TODO Access the params passed and use it to fetch the data from the server .
 
-function Product() {
+
+
+function Product({produc}) {
 
 const [size, setSize] = useState(0);
 const pizza = {

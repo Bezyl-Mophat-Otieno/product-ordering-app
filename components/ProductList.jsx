@@ -1,10 +1,31 @@
+'use client'
 import React from 'react'
 import styles from '../styles/productList.module.css'
 import ProductCard from './ProductCard'
+import Link from 'next/link'
+import axios from 'axios'
+import { useState , useEffect } from 'react'
 
 
 function ProductList() {
+  const [products , setProducts] = useState(()=>{
+    return JSON.parse(localStorage.getItem("products")) || []
+  })
+
+  useEffect(()=>{
+  
+    const fetchProducts = async () => {
+  
+      const res = await axios.get("http://localhost:3000/api/products")
+      const arrayOfProducts = await res.data;
+      localStorage.setItem("products", JSON.stringify(arrayOfProducts));
+      setProducts(arrayOfProducts);
+
+    }
+ fetchProducts()
+  },[])
   return (
+  
     <div className={styles.container}>
       <h1 className={styles.title}>THE BEST PIZZA IN TOWN</h1>
       <p className={styles.desc}>
@@ -13,17 +34,22 @@ function ProductList() {
         sit amet, consectetur adipiscing elit.
       </p>
       <div className={styles.wrapper}>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
-          <ProductCard/>
+
+      {
+        products.map((product)=>{
+
+          return <ProductCard key={product.id} product={product}/> 
+        })
+      }
+
+     
       </div>
     </div>
   )
 }
 
+
+
 export default ProductList
+
+
