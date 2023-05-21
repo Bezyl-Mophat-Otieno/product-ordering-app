@@ -1,40 +1,49 @@
 
 'use client'
 import React from 'react'
-import { useState } from 'react';
+import { useState , useEffect} from 'react';
 import Image from 'next/image';
 import styles from '../../../styles/product.module.css'
 import Link from 'next/link'
-
-
-//TODO: install react-rooter-dom 
-//TODO import useLocation
-//TODO Access the params passed and use it to fetch the data from the server .
-
-
-
-function Product({produc}) {
-
+import axios from 'axios';
+import {usePathname, useRouter , useSearchParams} from 'next/navigation'
+function Product() {
+const id = usePathname().split('/')[2]
 const [size, setSize] = useState(0);
-const pizza = {
-  id: 1,
-  img: "/img/pizza.png",
-  name: "CAMPAGNOLA",
-  price: [19.9, 23.9, 27.9],
-  desc: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis arcu purus, rhoncus fringilla vestibulum vel, dignissim vel ante. Nulla facilisi. Nullam a urna sit amet tellus pellentesque egestas in in ante.",
-};
+const [product, setProduct] = useState();
+
+
+useEffect(()=>{
+
+  const fetchProduct = async()=>{
+
+     try {
+    const res = await axios.get(`http://localhost:3000/api/products/${id}`)
+    const productObject = res.data;
+    setProduct(productObject)
+    
+  } catch (error) {
+    console.log(error);
+  }
+
+
+  }
+
+  fetchProduct()
+},[id])
+
 
   return (
     <div className={styles.container}>
       <div className={styles.left}>
         <div className={styles.imgContainer}>
-          <Image src={pizza.img} style={{objectFit:"contain"}}fill alt="" />
+          <Image src={product.image} style={{objectFit:"contain"}}fill alt="" />
         </div>
       </div>
       <div className={styles.right}>
-        <h1 className={styles.title}>{pizza.name}</h1>
-        <span className={styles.price}>${pizza.price[size]}</span>
-        <p className={styles.desc}>{pizza.desc}</p>
+        <h1 className={styles.title}>{product.name}</h1>
+        <span className={styles.price}>${product.prices[size]}</span>
+        <p className={styles.desc}>{product.desc}</p>
         <h3 className={styles.choose}>Choose the size</h3>
         <div className={styles.sizes}>
           <div className={styles.size} onClick={() => setSize(0)}>
@@ -60,34 +69,22 @@ const pizza = {
               className={styles.checkbox}
             />
             <label htmlFor="double">Double Ingredients</label>
-          </div>
-          <div className={styles.option}>
+            {
+            product.options.map((option)=>{
+return (          <div className={styles.option}>
             <input
               className={styles.checkbox}
               type="checkbox"
-              id="cheese"
-              name="cheese"
+              id={option.option}
+              name={option.option}
             />
-            <label htmlFor="cheese">Extra Cheese</label>
+            <label htmlFor="cheese">{option.option}</label>
+          </div>)
+
+            })
+          }
           </div>
-          <div className={styles.option}>
-            <input
-              className={styles.checkbox}
-              type="checkbox"
-              id="spicy"
-              name="spicy"
-            />
-            <label htmlFor="spicy">Spicy Sauce</label>
-          </div>
-          <div className={styles.option}>
-            <input
-              className={styles.checkbox}
-              type="checkbox"
-              id="garlic"
-              name="garlic"
-            />
-            <label htmlFor="garlic">Garlic Sauce</label>
-          </div>
+
         </div>
         <div className={styles.add}>
             <input type="number" defaultValue={1} className={styles.quantity}/>
